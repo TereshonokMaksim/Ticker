@@ -9,7 +9,7 @@ const timeSchedule = ["13:15-13:55", "14:00-14:40", "14:45-15:25", "15:30-16:10"
 let group = 0
 // 0 - dark, 1 - light
 let colorTheme = 0
-const BELL_OFFSET = -27
+const BELL_OFFSET = -28
 const UTC = 2
 
 function setLightTheme() {
