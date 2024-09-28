@@ -1,0 +1,52 @@
+.light {
+    --color-bg1: #f8f9fa;
+    --color-bg2: #e9ecef;
+    --color-fg: #495057;
+}
+
+.dark {
+    --color-bg1: #343a40;
+    --color-bg2: #212529;
+    --color-fg: #e9ecef;
+}
+
+html * {
+    transition: color .2s;
+    transition: background-color .2s;
+}
+
+#theme-switcher {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 9999;
+    width: 3rem;
+    height: 3rem;
+    margin: 25px;
+
+    font-size: 1.5rem;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--color-bg2);
+    color: var(--color-fg);
+    font-family: monospace;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+button {
+    font-family: monospace;
+}

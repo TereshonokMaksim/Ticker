@@ -1,0 +1,9 @@
+#login {
+    width: calc(100vw - 100px);
+    max-width: 500px;
+    padding-top: 50px;
+    padding-bottom: 75px;
+    border-radius: 25px;
+
+    background-color: var(--color-bg1);
+}
