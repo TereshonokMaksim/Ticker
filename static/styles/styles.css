@@ -20,11 +20,10 @@
     bottom: 0;
     right: 0;
 
-    z-index: 9999;
     width: 4rem;
     height: 4rem;
-    margin: 25px;
-    padding: 0;
+    margin: 2rem;
+    z-index: 9999;
 
     background-color: var(--color-bg1);
     font-size: 2rem;
@@ -67,10 +66,18 @@ input, button {
     font-size: 1.25rem;
 }
 
-input[type="text"], input[type="password"] {
-    padding: 0.25rem;
+input[type="submit"]:hover, button:hover {
+    filter: brightness(95%);
+}
+
+input[type="submit"]:active, button:active {
+    filter: brightness(90%);
 }
 
 input[type="submit"] {   
     padding: 1rem;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 0.25rem;
 }
