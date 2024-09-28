@@ -10,7 +10,7 @@
     --color-fg: #e9ecef;
 }
 
-html * {
+* {
     transition: color .2s;
     transition: background-color .2s;
 }
@@ -19,12 +19,15 @@ html * {
     position: fixed;
     bottom: 0;
     right: 0;
-    z-index: 9999;
-    width: 3rem;
-    height: 3rem;
-    margin: 25px;
 
-    font-size: 1.5rem;
+    z-index: 9999;
+    width: 4rem;
+    height: 4rem;
+    margin: 25px;
+    padding: 0;
+
+    background-color: var(--color-bg1);
+    font-size: 2rem;
 }
 
 html, body {
@@ -41,12 +44,33 @@ body {
     color: var(--color-fg);
     font-family: monospace;
     text-align: center;
+
+    user-select: none;
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
-button {
-    font-family: monospace;
+label {
+    font-size: 1.25rem;
+}
+
+input, button {
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--color-fg);
+    border-radius: 0.5rem;
+    background-color: var(--color-bg2);
+    color: var(--color-fg);
+    font-family: inherit;
+    font-size: 1.25rem;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 0.25rem;
+}
+
+input[type="submit"] {   
+    padding: 1rem;
 }
