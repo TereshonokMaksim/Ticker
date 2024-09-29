@@ -1,11 +1,24 @@
 // Its in miliseconds, don't forget
 const startNum = Date.now()
-const schedule = [[["", "TDv - 31"], ["", "TDv - 31"], "FIZ - 22", "HR - 33", "HR - 33", "AIP - 27", "TZK - sd", "TZK - sd"],
+const eveningSchedule = [[["", "TDv - 31"], ["", "TDv - 31"], "FIZ - 22", "HR - 33", "HR - 33", "AIP - 27", "TZK - sd", "TZK - sd"],
                   ["MA - 34", "BI - 26", "OE - 26", "PO - 41", "PO - 41", "", "", ""],
                   ["", "OE - 27", "FIZ - 26", "KE - 22", "MA - 36", "SR - 40", ["", "FIZv - 22"], "HRd - 21"],
                   [["TDv - 4", ""], ["TDv - 4", ""], "OE - 26", "GE - 47", "GE - 47", "EN - 40", "EN - 40", "VJ/ET - 25/21"],
                   ["MA - 37", "MA - 37", "HR - 33", "KE - 22", ["UITUP - 31", "AIPv - 4"], ["UITUP - 31", "AIPv - 4"], ["AIPv - 4", "UITOP - 31"], ["AIPv - 4", "UITUP - 31"]]]
-const timeSchedule = ["13:15-13:55", "14:00-14:40", "14:45-15:25", "15:30-16:10",   "16:30-17:10", "17:15-17:55", "18:00-18:40", "18:45-19:25"]
+const eveningTimeSchedule = ["13:15-13:55", "14:00-14:40", "14:45-15:25", "15:30-16:10",   "16:30-17:10", "17:15-17:55", "18:00-18:40", "18:45-19:25"]
+
+const morningSchedule = [[["OEv - 28", "TDv - 4"], ["OEv - 28", "TDv - 4"], ["TDv - 4", "OEv - 28"], ["TDv - 4", "OEv - 28"], "HR - 33", "HR - 33", "TZK - sd", "TZK - sd"],
+                         ["", "BI - 26", "OE - 26", "PO - 41", "PO - 41", "OE - 26", "FIZv - 22", ""],
+                         ["", "", "FIZ - 29", "KE - 26", "MA - 37", "SR - 40", "MA - 34", "HRd - 21"],
+                         ["", "AIP - 27", "OE - 26", "GE - 47", "GE - 47", "EN - 40", "EN - 40", "VJ/ET - 25/21"],
+                         ["MA - 37", "MA - 37", "HR - 33", "KE - 22", ["UITUP - 31", "AIPv - 4"], ["UITUP - 31", "AIPv - 4"], ["AIPv - 4", "UITOP - 31"], ["AIPv - 4", "UITUP - 31"]]]
+const morningTimeSchedule = ["7:45-8:25", "8:30-9:10", "9:15-9:55", "10:00-10:40", "11:00-11:40", "11:45-12:25", "12:30-13:10", "13:15-13:55"]
+
+let schedule = morningSchedule
+let timeSchedule = morningTimeSchedule
+let evenWeek = 0
+let firstUnevenWeek = 2855
+
 let group = 0
 // 0 - dark, 1 - light
 let colorTheme = 0
@@ -104,11 +117,26 @@ function getLastLesson (day) {
     return false
 }
 
+function getWeek(time) {
+    return ((Math.floor((time - 86400 * 4) / (86400 * 7))) - firstUnevenWeek) % 2
+}
+
 function updateTimer () {
     // let currentTime = Math.ceil(Date.now() / 1000 + 3600 * 3) % 86400
     // Artificial time, used for tests
-    let ARTIFICIAL_TIME = Math.ceil(Date.now() / 1000) + 86400 * 0 + 3600 * (UTC + 0) + 60 * 0
+    let ARTIFICIAL_TIME = Math.ceil(Date.now() / 1000) + 86400 * 1 + 3600 * (UTC + -14) + 60 * 0
     let currentTime = Math.ceil(ARTIFICIAL_TIME) % 86400
+    
+    if (getWeek(ARTIFICIAL_TIME) == 1) {
+        schedule = morningSchedule
+        timeSchedule = morningTimeSchedule
+    }
+    else {
+        schedule = eveningSchedule
+        timeSchedule = eveningTimeSchedule
+    }
+
+    console.log(`Week - ${getWeek(ARTIFICIAL_TIME)}   Hour - ${currentTime / 3600}`)
 
     let lessonFormLabel = document.querySelector(".time-lesson")
     let hourFormLabel = document.querySelector(".time-full")
@@ -121,7 +149,7 @@ function updateTimer () {
         let lastLesson = getLastLesson(curDay.getDay() - 1)
         let startTime = transformToSecs(firstLesson.split("^")[1].split("-")[0])
         let endTime = transformToSecs(lastLesson.split("^")[1].split("-")[1])
-        console.log(startTime, currentTime)
+        // console.log(startTime, currentTime)
         if (startTime > currentTime) {
             let timeText = ""
             if (startTime > currentTime + 3600) {
