@@ -124,7 +124,7 @@ function getWeek(time) {
 function updateTimer () {
     // let currentTime = Math.ceil(Date.now() / 1000 + 3600 * 3) % 86400
     // Artificial time, used for tests
-    let ARTIFICIAL_TIME = Math.ceil(Date.now() / 1000) + 86400 * 1 + 3600 * (UTC + -14) + 60 * 0
+    let ARTIFICIAL_TIME = Math.ceil(Date.now() / 1000) + 86400 * 0 + 3600 * (UTC + 0) + 60 * 0
     let currentTime = Math.ceil(ARTIFICIAL_TIME) % 86400
     
     if (getWeek(ARTIFICIAL_TIME) == 1) {
