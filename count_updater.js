@@ -8,10 +8,10 @@ const eveningSchedule = [[["", "TDv - 31"], ["", "TDv - 31"], "FIZ - 22", "HR - 
 const eveningTimeSchedule = ["13:15-13:55", "14:00-14:40", "14:45-15:25", "15:30-16:10",   "16:30-17:10", "17:15-17:55", "18:00-18:40", "18:45-19:25"]
 
 const morningSchedule = [[["OEv - 28", "TDv - 4"], ["OEv - 28", "TDv - 4"], ["TDv - 4", "OEv - 28"], ["TDv - 4", "OEv - 28"], "HR - 33", "HR - 33", "TZK - sd", "TZK - sd"],
-                         ["", "BI - 26", "OE - 26", "PO - 41", "PO - 41", "OE - 26", "FIZv - 22", ""],
-                         ["", "", "FIZ - 29", "KE - 26", "MA - 37", "SR - 40", "MA - 34", "HRd - 21"],
-                         ["", "AIP - 27", "OE - 26", "GE - 47", "GE - 47", "EN - 40", "EN - 40", "VJ/ET - 25/21"],
-                         ["MA - 37", "MA - 37", "HR - 33", "KE - 22", ["UITUP - 31", "AIPv - 4"], ["UITUP - 31", "AIPv - 4"], ["AIPv - 4", "UITOP - 31"], ["AIPv - 4", "UITUP - 31"]]]
+                    ["", "BI - 26", "OE - 26", "PO - 41", "PO - 41", "OE - 26", "FIZv - 22", ""],
+                    ["", "", "FIZ - 29", "KE - 26", "MA - 37", "SR - 40", "MA - 34", "HRd - 21"],
+                    ["", "AIP - 27", "OE - 26", "GE - 47", "GE - 47", "EN - 40", "EN - 40", "VJ/ET - 25/21"],
+                    ["MA - 37", "MA - 37", "HR - 33", "KE - 22", ["UITUP - 31", "AIPv - 4"], ["UITUP - 31", "AIPv - 4"], ["AIPv - 4", "UITOP - 31"], ["AIPv - 4", "UITUP - 31"]]]
 const morningTimeSchedule = ["7:45-8:25", "8:30-9:10", "9:15-9:55", "10:00-10:40", "11:00-11:40", "11:45-12:25", "12:30-13:10", "13:15-13:55"]
 
 let schedule = morningSchedule
@@ -24,6 +24,7 @@ let group = 0
 let colorTheme = 0
 const BELL_OFFSET = -28
 const UTC = 2
+const dayMinus = 1
 
 function setLightTheme() {
     document.querySelector("body").style.background = "rgb(255, 253, 217)"
@@ -51,11 +52,12 @@ function getFirstLesson (day) {
     if (day < 5) {
         let currentSchedule = schedule[day]
         for (let lessonNum = 0; lessonNum < 8; lessonNum++) {
+            // console.log(`lll - ${schedule instanceof Array}`)
             let lesson = currentSchedule[lessonNum]
             // console.log(lesson)
             if (lesson instanceof Array) {
                 if (lesson[group] != "") {
-                    console.log(lesson[group])
+                    // console.log(lesson[group])
                     return lesson[group] + "^" + timeSchedule[lessonNum]
                 }
             }
@@ -102,14 +104,14 @@ function getLastLesson (day) {
     for (let lessonNum = 7; lessonNum > -1; lessonNum--) {
         let lesson = currentSchedule[lessonNum]
         if (lesson instanceof Array) {
-            if (lesson[group] != "" & !lesson[group].includes("d")) {
-                console.log(lesson[group])
+            if (lesson[group] != "" & !lesson[group].split(" - ")[0].includes("d")) {
+                // console.log(lesson[group])
                 return lesson[group] + "^" + timeSchedule[lessonNum]
             }
         }
         else {
-            if (lesson != "" & !lesson.includes("d")) {
-                console.log(lesson)
+            if (lesson != "" & !lesson.split(" - ")[0].includes("d")) {
+                // console.log(lesson)
                 return lesson + "^" + timeSchedule[lessonNum]
             }
         }
@@ -124,7 +126,7 @@ function getWeek(time) {
 function updateTimer () {
     // let currentTime = Math.ceil(Date.now() / 1000 + 3600 * 3) % 86400
     // Artificial time, used for tests
-    let ARTIFICIAL_TIME = Math.ceil(Date.now() / 1000) + 86400 * 0 + 3600 * (UTC + 0) + 60 * 0
+    let ARTIFICIAL_TIME = Math.ceil(Date.now() / 1000) + 86400 * 1 + 3600 * (UTC + -10) + 60 * 0
     let currentTime = Math.ceil(ARTIFICIAL_TIME) % 86400
     
     if (getWeek(ARTIFICIAL_TIME) == 1) {
@@ -136,17 +138,17 @@ function updateTimer () {
         timeSchedule = eveningTimeSchedule
     }
 
-    console.log(`Week - ${getWeek(ARTIFICIAL_TIME)}   Hour - ${currentTime / 3600}`)
+    // console.log(`Week - ${getWeek(ARTIFICIAL_TIME)}   Hour - ${currentTime / 3600}`)
 
     let lessonFormLabel = document.querySelector(".time-lesson")
     let hourFormLabel = document.querySelector(".time-full")
     let secFormLabel = document.querySelector(".time-secs")
 
     let curDay = new Date(ARTIFICIAL_TIME * 1000)
-    console.log(`Day = ${curDay.getDay()}`)
-    let firstLesson = getFirstLesson(curDay.getDay() - 1)
+    // console.log(`Day = ${curDay.getDay()}`)
+    let firstLesson = getFirstLesson(curDay.getDay() - dayMinus)
     if (firstLesson != false & firstLesson != -2) {
-        let lastLesson = getLastLesson(curDay.getDay() - 1)
+        let lastLesson = getLastLesson(curDay.getDay() - dayMinus)
         let startTime = transformToSecs(firstLesson.split("^")[1].split("-")[0])
         let endTime = transformToSecs(lastLesson.split("^")[1].split("-")[1])
         // console.log(startTime, currentTime)
@@ -178,7 +180,7 @@ function updateTimer () {
             }
             hourFormLabel.innerHTML = `End in ${timeText}`
             secFormLabel.innerHTML = `${endTime - currentTime}s left`
-            lessonFormLabel.innerHTML = `${getCurrentLesson(currentTime, curDay.getDay() - 1)}`
+            lessonFormLabel.innerHTML = `${getCurrentLesson(currentTime, curDay.getDay() - dayMinus)}`
         }
         else if (endTime > currentTime - 3600) {
             hourFormLabel.innerHTML = "END"
@@ -221,9 +223,9 @@ const groupButton = document.querySelector(".group-switcher")
 groupButton.addEventListener("click", () => {
     if (group == 0){
         group = 1
-        console.log(
-        "hi"
-        )
+        // console.log(
+        // "hi"
+        // )
         document.querySelector("#group-a").classList.add("not-choosed")
         document.querySelector("#group-b").classList.remove("not-choosed")
     }
