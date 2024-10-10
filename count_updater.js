@@ -283,7 +283,7 @@ function updateTimer () {
 
     let currentEventLabel = document.querySelector(".info-current-event")
     let nextEventLabel = document.querySelector(".info-next-event")
-    let additionalInfoLabel = document.querySelector(".info-additional")
+    // let additionalInfoLabel = document.querySelector(".info-additional")
     let hourFormLabel = document.querySelector(".time-full")
     let secFormLabel = document.querySelector(".time-secs")
 
@@ -310,7 +310,7 @@ function updateTimer () {
             secFormLabel.innerHTML = `${Math.ceil(startTime - currentTime)}s left`
             currentEventLabel.innerHTML = "You have some time left, use it"
             nextEventLabel.innerHTML = getNextEvent(currentTime, curDay.getDay() - dayMinus)
-            additionalInfoLabel.innerHTML = `Good luck at the school`
+            // additionalInfoLabel.innerHTML = `Good luck at the school`
         }
         else if (endTime > currentTime) {
             let timeText = ""
@@ -341,14 +341,14 @@ function updateTimer () {
             secFormLabel.innerHTML = "You can go home now!"
             currentEventLabel.innerHTML = "Have a good day!"
             nextEventLabel.innerHTML = "Dont forget about homework, though"
-            additionalInfoLabel.innerHTML = ``
+            // additionalInfoLabel.innerHTML = ``
         }
         else {
             hourFormLabel.innerHTML = "Hello there!"
             secFormLabel.innerHTML = "Classes are over. You can freely live!"
             currentEventLabel.innerHTML = "peaceful life"
-            nextEventLabel = ""
-            additionalInfoLabel = "By the way, how are you?"
+            nextEventLabel = "Btw, how are you"
+            // additionalInfoLabel = "By the way, how are you?"
         }
 
     }
