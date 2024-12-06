@@ -367,13 +367,13 @@ function enrage() {
           setTimeout(() => {console.log("ENOUGH IS ENOUGH")}, 800)
           setTimeout(() => {document.location.replace("https://youtu.be/dQw4w9WgXcQ")}, 2000)
       }
-      else {
+      else if (!calmed) {
         calmed = true
         console.clear()
         console.log("Okay, i guess...")
         setTimeout(() => {console.log("Let's just pretend there was nothing")}, 500)
         setTimeout(() => {console.log("...so, how are you?")}, 2500)
-        setTimeout(() => {if (!chatting) {console.log("You can use text({your text}) to send a 'message'")}}, 5000)
+        setTimeout(() => {if (!chatting) {console.log("You can use text('{your text}') to send a 'message'")}}, 5000)
       }
     }
     if (!calmed) {
