@@ -384,7 +384,8 @@ function enrage() {
 function text(message) {
 
   if (!chatting) {
-    console.log("honestly, i have no idea what you are writing.")
+    chatting = true
+    return "honestly, i have no idea what you are writing."
     setTimeout(() => {console.log("Like, i use translator to speak with clients, like you")}, 1000)
     setTimeout(() => {console.log("But, i dont have anything to translate text from clients, it is just a random set of symbols for me")}, 2500)
     setTimeout(() => {console.log("So, text me later, when i will get translator")}, 5000)
@@ -398,7 +399,7 @@ function text(message) {
                 01100111 00100000 01110100 01101000 01101001 01110011 00111111 00100000 01010100 01101000 01101001 01110011 00100000 01101001 01110011 00100000 01101110 01101111 
                 01110100 00100000 01101100 01100001 01101110 01100111 01110101 01100001 01100111 01100101 00100000 01110100 01101000 01100001 01110100 00100000 01111001 01101111 
                 01110101 00100000 01100011 01101111 01110101 01101100 01100100 00100000 01110101 01101110 01100100 01100101 01110010 01110011 01110100 01100001 01101110 01100100 00100001`]
-    console.log(answers[randomInt(answers.length)])
+    return answers[randomInt(answers.length)]
   }
   
 }
