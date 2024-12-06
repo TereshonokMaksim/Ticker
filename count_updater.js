@@ -357,14 +357,50 @@ function easterEgg(event) {
 // This easter egg function prevents you from using console!
 
 let enraged = false
+let calmed = false
+let chatting = false
 
 function enrage() {
     if (!enraged) {
-        console.log("UGHHHHHHHHHHHHHHHHHHHHHHHHHHH")
-        setTimeout(() => {console.log("ENOUGH IS ENOUGH")}, 800)
-        setTimeout(() => {document.location.replace("https://youtu.be/dQw4w9WgXcQ")}, 2000)
+      if (rage) {
+          console.log("UGHHHHHHHHHHHHHHHHHHHHHHHHHHH")
+          setTimeout(() => {console.log("ENOUGH IS ENOUGH")}, 800)
+          setTimeout(() => {document.location.replace("https://youtu.be/dQw4w9WgXcQ")}, 2000)
+      }
+      else {
+        calmed = true
+        console.clear()
+        console.log("Okay, i guess...")
+        setTimeout(() => {console.log("Let's just pretend there was nothing")}, 500)
+        setTimeout(() => {console.log("...so, how are you?")}, 2500)
+        setTimeout(() => {if (!chatting) {console.log("You can use text({your text}) to send a 'message'")}}, 5000)
+      }
     }
-    enraged = true
+    if (!calmed) {
+      enraged = true
+    }
+}
+
+function text(message) {
+
+  if (!chatting) {
+    console.log("honestly, i have no idea what you are writing.")
+    setTimeout(() => {console.log("Like, i use translator to speak with clients, like you")}, 1000)
+    setTimeout(() => {console.log("But, i dont have anything to translate text from clients, it is just a random set of symbols for me")}, 2500)
+    setTimeout(() => {console.log("So, text me later, when i will get translator")}, 5000)
+  }
+  else {
+    answers = ["Still working on translator...", "Did you tell something about my cat?", "Please, dont write anything, because i still have no idea",
+               "Do you know binary code?", "what does that even mean??", "Yeah, right now im not here and you are talking with bot", "Do you know about how steel created?",
+               "Imagine Chinese guy will tell you a joke on chinese, how much you will understand?", 
+               `01010100 01101000 01101001 01110011 00100000 01101001 01110011 00100000 01100010 01101001 01101110 01100001 01110010 01111001 00101100 00100000 01101000 
+                01101111 01110111 00100000 01100001 01110010 01100101 00100000 01111001 01101111 01110101 00100000 01110010 01100101 01100001 01100100 01101001 01101110 
+                01100111 00100000 01110100 01101000 01101001 01110011 00111111 00100000 01010100 01101000 01101001 01110011 00100000 01101001 01110011 00100000 01101110 01101111 
+                01110100 00100000 01101100 01100001 01101110 01100111 01110101 01100001 01100111 01100101 00100000 01110100 01101000 01100001 01110100 00100000 01111001 01101111 
+                01110101 00100000 01100011 01101111 01110101 01101100 01100100 00100000 01110101 01101110 01100100 01100101 01110010 01110011 01110100 01100001 01101110 01100100 00100001`]
+    console.log(answers[randomInt(answers.length)])
+  }
+  
 }
 
 function checkConsole() {
@@ -379,18 +415,18 @@ function checkConsole() {
             setTimeout(() => {console.log("Ignoring......")}, 1500)
         }
     }
-    else if (!angry) {
-        angry = true
-        if (!enraged) {
-            enraged = true
-            setInterval(enrage, 400)
-            console.log("YOU THINK YOU CAN MAKE ME CALM THAT EASY?")
-            setTimeout(() => {console.log("LETS TEST HOW YOU CAN CALM ME WITHOUT ANY CONTROL!")}, 500)
-            setTimeout(() => {console.log("GL!")}, 1100)
-            setTimeout(() => {console.log("Disabling controls...")}, 1300)
-            setTimeout(() => {console.log("Ignoring......")}, 1400)
-        }
-    }
+    // else if (!angry) {
+    //     angry = true
+    //     if (!enraged) {
+    //         enraged = true
+    //         setInterval(enrage, 400)
+    //         console.log("YOU THINK YOU CAN MAKE ME CALM THAT EASY?")
+    //         setTimeout(() => {console.log("LETS TEST HOW YOU CAN CALM ME WITHOUT ANY CONTROL!")}, 500)
+    //         setTimeout(() => {console.log("GL!")}, 1100)
+    //         setTimeout(() => {console.log("Disabling controls...")}, 1300)
+    //         setTimeout(() => {console.log("Ignoring......")}, 1400)
+    //     }
+    // }
     // else {
     //     setTimeout(checkConsole, 200)
     // }
