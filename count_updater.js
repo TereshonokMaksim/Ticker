@@ -4,18 +4,18 @@ const startNum = Date.now()
 // Alright, lets go
 // Ok, you know what? No, i dont want to do it
 // Let it be the strangest, but working way!
-const eveningSchedule = [[["", "TDv - 31"], ["", "TDv - 31"], "FIZ - 22", "HR - 33", "HR - 33", "AIP - 27", "TZK - sd", "TZK - sd"],
-                  ["MA - 34", "BI - 26", "OE - 26", "PO - 41", "PO - 41", "", "", ""],
-                  ["", "OE - 27", "FIZ - 26", "KE - 22", "MA - 36", "SR - 40", ["", "FIZv - 22"], "HRd - 21"],
-                  [["TDv - 4", ""], ["TDv - 4", ""], "OE - 26", "GE - 47", "GE - 47", "EN - 40", "EN - 40", "VJ/ET - 25/21"],
-                  ["MA - 37", "MA - 37", "HR - 33", "KE - 22", ["UITUP - 31", "AIPv - 4"], ["UITUP - 31", "AIPv - 4"], ["AIPv - 4", "UITOP - 31"], ["AIPv - 4", "UITUP - 31"]]]
+const eveningSchedule = [["", "", "FIZ - 22", "HR - 33", "HR - 33", "AIP - 27", "TZK - sd", "TZK - sd"],
+                  ["MA - 34", "BI - 26", "OE - 26", "PO - 41", "PO - 41",  ["", "TDv - 31"], ["", "TDv - 31"], ""],
+                  ["VJ - 25", "OE - 27", "FIZ - 26", "KE - 22", "MA - 36", "SR - 40", ["", "FIZv - 22"], "HRd - 21"],
+                  [["TDv - 4", ""], ["TDv - 4", ""], "OE - 26", "GE - 47", "GE - 47", "EN - 40", "EN - 40", "ET - 21"],
+                  ["MA - 37", "MA - 37", "HR - 33", "KE - 22", ["UITUP - 31", "AIPv - 4"], ["UITUP - 31", "AIPv - 4"], ["AIPv - 4", "UITUP - 31"], ["AIPv - 4", "UITUP - 31"]]]
 const eveningTimeSchedule = ["13:15-13:55", "14:00-14:40", "14:45-15:25", "15:30-16:10",   "16:30-17:10", "17:15-17:55", "18:00-18:40", "18:45-19:25"]
 
 const morningSchedule = [[["OEv - 28", "TDv - 4"], ["OEv - 28", "TDv - 4"], ["TDv - 4", "OEv - 28"], ["TDv - 4", "OEv - 28"], "HR - 33", "HR - 33", "TZK - sd", "TZK - sd"],
                     ["", "BI - 26", "OE - 26", "PO - 41", "PO - 41", "OE - 26", ["FIZv - 22", ""], ""],
                     ["", "", "FIZ - 29", "KE - 26", "MA - 37", "SR - 40", "MA - 34", "HRd - 21"],
                     ["", "AIP - 27", "OE - 26", "GE - 47", "GE - 47", "EN - 40", "EN - 40", "VJ/ET - 25/21"],
-                    ["MA - 37", "MA - 37", "HR - 33", "KE - 22", ["UITUP - 31", "AIPv - 4"], ["UITUP - 31", "AIPv - 4"], ["AIPv - 4", "UITOP - 31"], ["AIPv - 4", "UITUP - 31"]]]
+                    ["MA - 37", "MA - 37", "HR - 33", "KE - 22", ["UITUP - 31", "AIPv - 4"], ["UITUP - 31", "AIPv - 4"], ["AIPv - 4", "UITUP - 31"], ["AIPv - 4", "UITUP - 31"]]]
 const morningTimeSchedule = ["7:45-8:25", "8:30-9:10", "9:15-9:55", "10:00-10:40", "11:00-11:40", "11:45-12:25", "12:30-13:10", "13:15-13:55"]
 
 const EVENING_SCHEDULE_WORK = true
@@ -27,26 +27,47 @@ let firstUnevenWeek = 2855
 let group = 0
 // 0 - dark, 1 - light
 let colorTheme = 0
-const BELL_OFFSET = -27.5
-const UTC = 2
+const BELL_OFFSET = -28
+const UTC = 1
 const dayMinus = 1
+let ignoring = false
 
 function setLightTheme() {
+    // Here we go again! It's 05-12-2024 today!
+    localStorage.setItem("theme", "1")
     document.querySelector("body").style.background = "rgb(255, 253, 217)"
     document.querySelectorAll(".time").forEach((time_el) => {time_el.style.color = "rgb(40, 40, 40)"})
     document.querySelectorAll(".info").forEach((time_el) => {time_el.style.color = "rgb(40, 40, 40)"})
     document.querySelector(".theme-switcher").style.background = "linear-gradient(to top, rgb(140, 140, 140), rgb(207, 207, 207))"
     document.querySelector("#theme-dark").classList.add("not-choosed")
     document.querySelector("#theme-light").classList.remove("not-choosed")
+    document.querySelector(".show-schedule").classList.replace("night-show-schedule", "light-show-schedule")
+    document.querySelector(".modal-window").classList.replace("modal-window-night", "modal-window-light")
+    document.querySelector(".modal-window-header").classList.replace("modal-window-header-night", "modal-window-header-light")
+    document.querySelectorAll(".table-headers").forEach((head_el) => {head_el.classList.replace("table-headers-night", "table-headers-light")})
+    document.querySelectorAll(".schedule-info").forEach((head_el) => {head_el.classList.replace("schedule-info-night", "schedule-info-light")})
+    if (!ignoring) {
+        console.log("Setted light theme")
+    }
+
 }
 
 function setDarkTheme() {
+    localStorage.setItem("theme", "0")
     document.querySelector("body").style.background = "rgb(0, 0, 40)"
     document.querySelectorAll(".time").forEach((time_el) => {time_el.style.color = "rgb(80, 80, 200)"})
     document.querySelectorAll(".info").forEach((time_el) => {time_el.style.color = "rgb(80, 80, 200)"})
     document.querySelector(".theme-switcher").style.background = "linear-gradient(to top, rgb(1, 0, 100), rgb(6, 0, 130))"
     document.querySelector("#theme-dark").classList.remove("not-choosed")
     document.querySelector("#theme-light").classList.add("not-choosed")
+    document.querySelector(".show-schedule").classList.replace("light-show-schedule", "night-show-schedule")
+    document.querySelector(".modal-window").classList.replace("modal-window-light", "modal-window-night")
+    document.querySelector(".modal-window-header").classList.replace("modal-window-header-light", "modal-window-header-night")
+    document.querySelectorAll(".table-headers").forEach((head_el) => {head_el.classList.replace("table-headers-light", "table-headers-night")})
+    document.querySelectorAll(".schedule-info").forEach((head_el) => {head_el.classList.replace("schedule-info-light", "schedule-info-night")})
+    if (!ignoring) {
+        console.log("Setted night (dark) theme")
+    }
 }
 
 function transformToSecs (hour_form) {
@@ -73,7 +94,7 @@ function getFirstEvent (day) {
             // console.log(lesson)
             if (lesson instanceof Array) {
                 if (lesson[group] != "") {
-                    console.log(lesson[group])
+                    // console.log(lesson[group])
                     return lesson[group] + "^" + timeSchedule[lessonNum]
                 }
             }
@@ -99,7 +120,7 @@ function getCurrentEvent (currentTime, day) {
         let lessonStart = transformToSecs(timeSchedule[lessonNum].split("-")[0])
         let lessonEnd = transformToSecs(timeSchedule[lessonNum].split("-")[1])
         if (lessonStart <= currentTime & currentTime <= lessonEnd) {
-            console.log(lessonStart <= currentTime & currentTime <= lessonEnd)
+            // console.log(lessonStart <= currentTime & currentTime <= lessonEnd)
             let lesson = schedule[day][lessonNum]
             if (lesson instanceof Array) {
                 if (lesson[group] != "") {
@@ -119,7 +140,7 @@ function getCurrentEvent (currentTime, day) {
             }
         }
         else {
-            console.log(!(lessonNum < 7), "yoyo")
+            // console.log(!(lessonNum < 7), "yoyo")
             if (lessonNum < 7) {
                 // Best optimization in my projects be like
                 let endCurrentLesson = transformToSecs(timeSchedule[lessonNum].split("-")[1])
@@ -152,7 +173,7 @@ function getCurrentEvent (currentTime, day) {
 
 function getNextEvent (currentTime, day) {
     let first_lesson = getFirstEvent(day).split("^")
-    console.log(transformToSecs(first_lesson[1].split("-")[0]), "aaa")
+    // console.log(transformToSecs(first_lesson[1].split("-")[0]), "aaa")
     if (currentTime < transformToSecs(first_lesson[1].split("-")[0])) {
         return `First lesson is ${first_lesson[0]}`
     }
@@ -178,7 +199,7 @@ function getNextEvent (currentTime, day) {
                 // }
             }
             else {
-                console.log(endCurrentLesson, currentTime, startNextLesson, "KOK")
+                // console.log(endCurrentLesson, currentTime, startNextLesson, "KOK")
                 if (endCurrentLesson < currentTime & currentTime < startNextLesson) {
                     let lesson = schedule[day][lessonNum + 1]
                     if (lesson instanceof Array) {
@@ -230,6 +251,36 @@ function getLastEvent (day) {
     return false
 }
 
+// Hello everybody, long time no see, eh?
+// Today is 4 December of 2024 year by the way, so, the main question is:
+// WHERE IS YOUR CHRISTMAS MOOD
+
+function getTodaysSchedule(day) {
+    let lessons = {}
+    for (let lessonNum = 0; lessonNum < 8; lessonNum++) {
+        let lesson = schedule[day][lessonNum]
+        if (lesson instanceof Array) {
+            lesson = lesson[group]
+        }
+        lessons[timeSchedule[lessonNum]] = lesson
+    }
+    return lessons
+}
+
+// so sleepy right now and i have homework to do... argh
+
+function transferTodaysSchedule(day) {
+    document.querySelector(".modal-window-header").innerHTML = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"][day]
+    let todaySchedule = getTodaysSchedule(day)
+    // console.log(todaySchedule, day)
+    let times = Object.keys(todaySchedule)
+    let lessons = Object.values(todaySchedule)
+    for (let lessonNum = 0; lessonNum < 8; lessonNum++) {
+        document.querySelectorAll(".schedule-time")[lessonNum].innerHTML = times[lessonNum]
+        document.querySelectorAll(".schedule-lesson")[lessonNum].innerHTML = lessons[lessonNum]
+    }
+}
+
 // yooo, new totally not copypasted and totally not useless function!1!!11
 // Okay, if serious, why i create a bunch of stupid functions?
 // nevermind, back to work
@@ -260,6 +311,138 @@ function getWeek(time) {
     return ((Math.floor((time - 86400 * 4) / (86400 * 7))) - firstUnevenWeek) % 2
 }
 
+// YAY, i made something in Ticker that is not Ticker!
+
+function randomInt(maximum) {
+    return Math.floor(Math.random() * maximum)
+    // Thanks to https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+}
+
+let howMuchClicked = 0
+let angry = false
+function easterEgg(event) {
+    let position = [event.clientX, event.clientY]
+    if (position[0] < 7 & position[1] < 7 & !ignoring & !enraged) {
+        answers = ["Don't tap here!", "OW!", "Why?", "Did you read the code or what?", 
+            "This is Ticker web app, why are you clicking in the corner?", "Ouch!", "Do you really don't have anything better to do?"]
+        angryAnswers = ["NO", "REALLY?", "AGAIN???", "You are such a bad person", "I hope you are happy, piece of nature...", "Im really sick of you",
+            "STOP CLICKING", "can i call police?"
+        ]
+        howMuchClicked++
+        if (angry) {
+            if (randomInt(30 - howMuchClicked) == 1 & howMuchClicked > 8) {
+                console.clear()
+                console.log("ENOUGH!")
+                ignoring = true
+                setInterval(checkConsole, 200)
+            }
+            else {
+                console.log(angryAnswers[randomInt(angryAnswers.length)])
+            }
+        }
+        else {
+            if (randomInt(4) == 1 & howMuchClicked > 10) {
+                console.clear()
+                console.error("HEY, STOP. THIS IS NOT FAIR!")
+                howMuchClicked = 0
+                angry = true
+            }
+            else {
+                console.log(answers[randomInt(answers.length)])
+            }
+        }
+    }
+}
+
+// This easter egg function prevents you from using console!
+
+let enraged = false
+
+function enrage() {
+    if (!enraged) {
+        console.log("UGHHHHHHHHHHHHHHHHHHHHHHHHHHH")
+        setTimeout(() => {console.log("ENOUGH IS ENOUGH")}, 800)
+        setTimeout(() => {document.location.replace("https://youtu.be/dQw4w9WgXcQ")}, 2000)
+    }
+    enraged = true
+}
+
+function checkConsole() {
+    if (!ignoring) {
+        ignoring = true
+        if (!enraged) {
+            enraged = true
+            setInterval(enrage, 400)
+            console.log("So, you know how to use console, dont ya?")
+            setTimeout(() => {console.log("Now, let's discover what you can do without controls and this pesky console!")}, 700)
+            setTimeout(() => {console.log("Disabling controls...")}, 1400)
+            setTimeout(() => {console.log("Ignoring......")}, 1500)
+        }
+    }
+    else if (!angry) {
+        angry = true
+        if (!enraged) {
+            enraged = true
+            setInterval(enrage, 400)
+            console.log("YOU THINK YOU CAN MAKE ME CALM THAT EASY?")
+            setTimeout(() => {console.log("LETS TEST HOW YOU CAN CALM ME WITHOUT ANY CONTROL!")}, 500)
+            setTimeout(() => {console.log("GL!")}, 1100)
+            setTimeout(() => {console.log("Disabling controls...")}, 1300)
+            setTimeout(() => {console.log("Ignoring......")}, 1400)
+        }
+    }
+    // else {
+    //     setTimeout(checkConsole, 200)
+    // }
+}
+
+
+function changeGroup() {
+    if (group == 0){
+        group = 1
+        document.querySelector("#group-a").classList.add("not-choosed")
+        document.querySelector("#group-b").classList.remove("not-choosed")
+        localStorage.setItem("group", "1")
+        if (!ignoring) {
+            console.log("Changed to B group")
+        }
+    }
+    else {
+        group = 0
+        document.querySelector("#group-b").classList.add("not-choosed")
+        document.querySelector("#group-a").classList.remove("not-choosed")
+        localStorage.setItem("group", "0")
+        if (!ignoring) {
+            console.log("Changed to A group")
+        }
+    }
+}
+
+// Just a small function, maybe
+
+function loadLocalStorage() {
+    if (localStorage.length == 0) {
+        // console.log("NO STORAGE FOUND")
+        localStorage.setItem("theme", "0")
+        localStorage.setItem("group", "0")
+        if (!ignoring) {
+            console.log("Inititalized local storage")
+        }
+    }
+    else {
+        if (!ignoring) {
+            console.log("Opened local storage")
+        }
+        if (localStorage.getItem("theme") == "1") {
+            setLightTheme()
+            colorTheme = 1
+        }
+        if (localStorage.getItem("group") == "1") {
+            changeGroup()
+        }
+    }
+}
+
 // Oh, the main function. I dont want to touch it, it looks bad, like, VERY BAD
 // help
 
@@ -283,7 +466,7 @@ function updateTimer () {
 
     let currentEventLabel = document.querySelector(".info-current-event")
     let nextEventLabel = document.querySelector(".info-next-event")
-    let additionalInfoLabel = document.querySelector(".info-additional")
+    // let additionalInfoLabel = document.querySelector(".info-additional")
     let hourFormLabel = document.querySelector(".time-full")
     let secFormLabel = document.querySelector(".time-secs")
 
@@ -294,6 +477,7 @@ function updateTimer () {
         let lastEvent = getLastEvent(curDay.getDay() - dayMinus)
         let startTime = transformToSecs(firstEvent.split("^")[1].split("-")[0])
         let endTime = transformToSecs(lastEvent.split("^")[1].split("-")[1])
+        transferTodaysSchedule(curDay.getDay() - dayMinus)
         // console.log(startTime, currentTime)
         if (startTime > currentTime) {
             let timeText = ""
@@ -310,7 +494,7 @@ function updateTimer () {
             secFormLabel.innerHTML = `${Math.ceil(startTime - currentTime)}s left`
             currentEventLabel.innerHTML = "You have some time left, use it"
             nextEventLabel.innerHTML = getNextEvent(currentTime, curDay.getDay() - dayMinus)
-            additionalInfoLabel.innerHTML = `Good luck at the school`
+            // additionalInfoLabel.innerHTML = `Good luck at the school`
         }
         else if (endTime > currentTime) {
             let timeText = ""
@@ -327,7 +511,7 @@ function updateTimer () {
             secFormLabel.innerHTML = `${Math.ceil(endTime - currentTime)}sec left`
             let currentEvent = getCurrentEvent(currentTime, curDay.getDay() - dayMinus)
             let timeLeft = Math.ceil(currentEvent.split("^")[1]) - currentTime
-            console.log(currentEvent.split("^")[1], currentTime, "sss")
+            // console.log(currentEvent.split("^")[1], currentTime, "sss")
             let timeLeftText = ""
             if (Math.floor(timeLeft / 60) != 0) {
                 timeLeftText = `${Math.floor(timeLeft / 60)}min `
@@ -341,14 +525,14 @@ function updateTimer () {
             secFormLabel.innerHTML = "You can go home now!"
             currentEventLabel.innerHTML = "Have a good day!"
             nextEventLabel.innerHTML = "Dont forget about homework, though"
-            additionalInfoLabel.innerHTML = ``
+            // additionalInfoLabel.innerHTML = ``
         }
         else {
             hourFormLabel.innerHTML = "Hello there!"
             secFormLabel.innerHTML = "Classes are over. You can freely live!"
             currentEventLabel.innerHTML = "peaceful life"
-            nextEventLabel = ""
-            additionalInfoLabel = "By the way, how are you?"
+            nextEventLabel = "Btw, how are you"
+            // additionalInfoLabel = "By the way, how are you?"
         }
 
     }
@@ -365,33 +549,47 @@ function updateTimer () {
     }
 }
 
+loadLocalStorage()
+
 setInterval(updateTimer, 500)
 
 const themeButton = document.querySelector(".theme-switcher")
 themeButton.addEventListener("click", () => {
-    [setLightTheme, setDarkTheme][colorTheme]()
-    if (colorTheme == 0) {
-        colorTheme = 1
-    }
-    else {
-        colorTheme = 0
+    if (!enraged) {
+        [setLightTheme, setDarkTheme][colorTheme]()
+        if (colorTheme == 0) {
+            colorTheme = 1
+        }
+        else {
+            colorTheme = 0
+        }
     }
 })
 
 const groupButton = document.querySelector(".group-switcher")
 groupButton.addEventListener("click", () => {
-    if (group == 0){
-        group = 1
-        // console.log(
-        // "hi"
-        // )
-        document.querySelector("#group-a").classList.add("not-choosed")
-        document.querySelector("#group-b").classList.remove("not-choosed")
+    if (!enraged) {
+        changeGroup()
+        updateTimer()
     }
-    else {
-        group = 0
-        document.querySelector("#group-b").classList.add("not-choosed")
-        document.querySelector("#group-a").classList.remove("not-choosed")
+})
+
+document.querySelector("body").addEventListener("click", easterEgg, false)
+
+document.querySelector(".show-schedule").addEventListener("click", () => {
+    if (!enraged) {
+        document.querySelector(".bg-modal-blur").style.display = "flex"
+        if (!ignoring) {
+            console.log("Showed schedule")
+        }
     }
-    updateTimer()
+})
+
+document.querySelector(".bg-modal-blur").addEventListener("click", () => {
+    if (!enraged) {
+        document.querySelector(".bg-modal-blur").style.display = "none"
+        if (!ignoring) {
+            console.log("Closed schedule")
+        }
+    }
 })

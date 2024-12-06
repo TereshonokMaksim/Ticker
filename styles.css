@@ -8,8 +8,10 @@ body{
     font-family: monospace;
     background-color: rgb(0, 0, 40);
     overflow: hidden;
-    padding: 30px;
+    padding: 100px 30px 0px 30px;
     margin: 0px;
+    transition: 0.2s;
+    user-select: none;
 }
 .side-switches{
     position: fixed;
@@ -60,6 +62,7 @@ body{
     color: rgb(80, 80, 200);
     font-size: 24px;
     max-width: 90%;
+    margin: 10px 0px;
 }
 
 .time-full{
@@ -72,4 +75,140 @@ body{
 
 .time-lesson{
     font-size: 30px;
+}
+
+.show-schedule{
+    font-size: 32px;
+    border-radius: 10px;
+    padding: 10px;
+    user-select: none;
+    cursor: default;
+    transition: 0.2s;
+
+}
+
+.night-show-schedule{
+    color: rgb(80, 80, 200);
+    background-color: rgb(30, 30, 140);
+}
+
+.night-show-schedule:hover{
+    background-color: rgb(40, 40, 160);
+    transition: 0.3s;
+}
+
+.light-show-schedule{
+    color: rgb(40, 40, 40);
+    background-color: rgb(200, 200, 180);
+}
+
+.light-show-schedule:hover{
+    background-color: rgb(220, 220, 200);
+    transition: 0.3s;
+}
+
+.bg-modal-blur{
+    display: none;
+    /* display: flex; */
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    max-width: 100%;
+    max-height: 100vh;
+    min-width: 100%;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-window{
+    width: 300px;
+    height: 600px;
+    border-radius: 25px;
+    padding: 0px;
+    border: 3px solid rgb(0, 0, 0);
+    overflow: hidden;
+    user-select: none;
+}
+
+.modal-window-night{
+    background-color: rgb(24, 24, 124);
+    border-color: rgb(50, 50, 200);
+}
+
+.modal-window-light{
+    background-color: rgb(220, 220, 180);
+    border-color: rgb(20, 20, 0);
+}
+
+.modal-window-header{
+    display: flex;
+    width: 100%;
+    height: 100px;
+    font-size: 40px;
+    border-radius: 25px 25px 0px 0px;
+    border-bottom: 2px solid rgb(0, 0, 0);
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+}
+
+.modal-window-header-night{
+    background-color: rgb(30, 30, 140);
+    color: rgb(80, 80, 240);
+    border-color: rgb(50, 50, 200);
+}
+
+.modal-window-header-light{
+    background-color: rgb(220, 220, 200);
+    color: rgb(10, 10, 0);
+    border-color: rgb(20, 20, 0);
+}
+
+.modal-window-schedule{
+    height: 500px;
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.table-headers{
+    border: 2px solid rgb(0, 0, 0);
+    /* border-left: 0px; */
+    font-size: 24px;
+    height: 60px;
+    box-sizing: border-box;
+}
+
+.table-headers-night{
+    border-color: rgb(30, 30, 200);
+    color: rgb(70, 70, 240);
+    background-color: rgb(27, 27, 130);
+}
+
+.table-headers-light{
+    border-color: rgb(40, 40, 5);
+    color: rgb(20, 20, 5);
+    background-color: rgb(230, 230, 200);
+}
+
+.schedule-info{
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    text-align: center;
+    font-size: 18px;
+    border: 2px solid rgb(0, 0, 0);
+    box-sizing: border-box;
+} 
+
+.schedule-info-night{
+    color: rgb(65, 65, 220);
+    border-color: rgb(29, 29, 190);
+}
+
+.schedule-info-light{
+    color: rgb(10, 10, 0);
+    border-color: rgb(40, 40, 5);
 }
