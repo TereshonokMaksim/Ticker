@@ -4,20 +4,49 @@ const startNum = Date.now()
 // Alright, lets go
 // Ok, you know what? No, i dont want to do it
 // Let it be the strangest, but working way!
-const eveningSchedule = [["", "", "FIZ - 22", "HR - 33", "HR - 33", "AIP - 27", "TZK - sd", "TZK - sd"],
-                  ["MA - 34", "BI - 26", "OE - 26", "PO - 41", "PO - 41",  ["", "TDv - 31"], ["", "TDv - 31"], ""],
-                  ["VJ - 25", "OE - 27", "FIZ - 26", "KE - 22", "MA - 36", "SR - 40", ["", "FIZv - 22"], "HRd - 21"],
-                  [["TDv - 4", ""], ["TDv - 4", ""], "OE - 26", "GE - 47", "GE - 47", "EN - 40", "EN - 40", "ET - 21"],
-                  ["MA - 37", "MA - 37", "HR - 33", "KE - 22", ["UITUP - 31", "AIPv - 4"], ["UITUP - 31", "AIPv - 4"], ["AIPv - 4", "UITUP - 31"], ["AIPv - 4", "UITUP - 31"]]]
-const eveningTimeSchedule = ["13:15-13:55", "14:00-14:40", "14:45-15:25", "15:30-16:10",   "16:30-17:10", "17:15-17:55", "18:00-18:40", "18:45-19:25"]
+" That's previous evening schedule, and now it's just laying here as artifact from the past :P "
+// const eveningSchedule = [["", "", "FIZ - 22", "HR - 33", "HR - 33", "AIP - 27", "TZK - sd", "TZK - sd"],
+//                   ["MA - 34", "BI - 26", "OE - 26", "PO - 41", "PO - 41",  ["", "TDv - 31"], ["", "TDv - 31"], ""],
+//                   ["VJ - 25", "OE - 27", "FIZ - 26", "KE - 22", "MA - 36", "SR - 40", ["", "FIZv - 22"], "HRd - 21"],
+//                   [["TDv - 4", ""], ["TDv - 4", ""], "OE - 26", "GE - 47", "GE - 47", "EN - 40", "EN - 40", "ET - 21"],
+//                   ["MA - 37", "MA - 37", "HR - 33", "KE - 22", ["UITUP - 31", "AIPv - 4"], ["UITUP - 31", "AIPv - 4"], ["AIPv - 4", "UITUP - 31"], ["AIPv - 4", "UITUP - 31"]]]
+// const eveningTimeSchedule = ["13:50-14:35", "14:40-15:25", "15:30-16:15", "16:20-17:05", "17:10-17:55", "18:00-18:45", "18:50-19:35", "19:40-20:25"]
+
+// Yoo, hello everybody!
+// Its 7.01.2025, the first day of the school after winter holidays!
+// On this holidays i was in Milano. I do not recommend you to go here.
+// ...
+// So, today i'm gonna change schedules!
+// You could ask: "why?"
+// And that's because we don't have evening shift again!
+// ...i'm not sure if it's good or not, but i will accept it
+// So, how im gonna change it?
+// yep, the stupid way
+// im just gonna copy the morning schedule and set it as evening schedule
+// And there's literally only one reason for this
+// Just for physics on Tuesday
+// i'm not even joking
+// Because i'm too lazy to create actual code for this stupid lesson
+// Btw, hi to my friend if he reading this!
+// See? I actually commited new version!..
+// or did i commit just this text?...
+// Nvm, gotta work!
+
+const eveningSchedule = [[["OEv - 28", "TDv - 4"], ["OEv - 28", "TDv - 4"], ["TDv - 4", "OEv - 28"], ["TDv - 4", "OEv - 28"], "HR - 33", "HR - 33", "TZK - sd", "TZK - sd"],
+                    ["", "BI - 26", "OE - 26", "PO - 41", "PO - 41", "OE - 26", ["", "FIZv - 22"], ""],
+                    ["", "", "FIZ - 29", "KE - 26", "MA - 37", "SR - 40", "MA - 34", "HRd - 21"],
+                    ["", "AIP - 27", "OE - 26", "GE - 47", "GE - 47", "EN - 40", "EN - 40", "VJ/ET - 25/21"],
+                    ["MA - 37", "MA - 37", "HR - 33", "KE - 22", ["UITUP - 31", "AIPv - 4"], ["UITUP - 31", "AIPv - 4"], ["AIPv - 4", "UITUP - 31"], ["AIPv - 4", "UITUP - 31"]]]
+const eveningTimeSchedule = ["7:45-8:30", "8:35-9:20", "9:25-10:10", "10:15-11:00", "11:20-12:05", "12:10-12:55", "13:00-13:45", "13:50-14:35"]
 
 const morningSchedule = [[["OEv - 28", "TDv - 4"], ["OEv - 28", "TDv - 4"], ["TDv - 4", "OEv - 28"], ["TDv - 4", "OEv - 28"], "HR - 33", "HR - 33", "TZK - sd", "TZK - sd"],
                     ["", "BI - 26", "OE - 26", "PO - 41", "PO - 41", "OE - 26", ["FIZv - 22", ""], ""],
                     ["", "", "FIZ - 29", "KE - 26", "MA - 37", "SR - 40", "MA - 34", "HRd - 21"],
                     ["", "AIP - 27", "OE - 26", "GE - 47", "GE - 47", "EN - 40", "EN - 40", "VJ/ET - 25/21"],
                     ["MA - 37", "MA - 37", "HR - 33", "KE - 22", ["UITUP - 31", "AIPv - 4"], ["UITUP - 31", "AIPv - 4"], ["AIPv - 4", "UITUP - 31"], ["AIPv - 4", "UITUP - 31"]]]
-const morningTimeSchedule = ["7:45-8:25", "8:30-9:10", "9:15-9:55", "10:00-10:40", "11:00-11:40", "11:45-12:25", "12:30-13:10", "13:15-13:55"]
+const morningTimeSchedule = ["7:45-8:30", "8:35-9:20", "9:25-10:10", "10:15-11:00", "11:20-12:05", "12:10-12:55", "13:00-13:45", "13:50-14:35"]
 
+// it works, just sort of.
 const EVENING_SCHEDULE_WORK = true
 let schedule = morningSchedule
 let timeSchedule = morningTimeSchedule
@@ -365,6 +394,7 @@ function enrage() {
       // if (rage) {
           console.log("UGHHHHHHHHHHHHHHHHHHHHHHHHHHH")
           setTimeout(() => {console.log("ENOUGH IS ENOUGH")}, 800)
+        //   ONLY RICKROLL FOR YOU >:D
           setTimeout(() => {document.location.replace("https://youtu.be/dQw4w9WgXcQ")}, 2000)
       // }
       // else if (!calmed) {
@@ -372,14 +402,14 @@ function enrage() {
       //   console.clear()
       //   console.log("Okay, i guess...")
       //   setTimeout(() => {console.log("Let's just pretend there was nothing")}, 500)
-      //   setTimeout(() => {console.log("...so, how are you?")}, 2500)
-      //   setTimeout(() => {if (!chatting) {console.log("You can use text('{your text}') to send a 'message'")}}, 5000)
       // }
     }
     if (!calmed) {
       enraged = true
     }
 }
+
+// NO CHATTING FOR YOU, SHUT UP
 
 // function text(message) {
 
@@ -416,6 +446,7 @@ function checkConsole() {
             setTimeout(() => {console.log("Ignoring......")}, 1500)
         }
     }
+    // haha, you actually thinked that i will make chatbot for you? :)))
     // else if (!angry) {
     //     angry = true
     //     if (!enraged) {
