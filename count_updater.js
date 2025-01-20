@@ -32,7 +32,7 @@ const startNum = Date.now()
 // or did i commit just this text?...
 // Nvm, gotta work!
 
-const eveningSchedule = [["", "", "FIZ - 22", "HR - 33", "HR - 33", "AIP - 27", "TZK - sd", "TZK - sd"],
+const eveningSchedule = [["TDv - 4", "", "FIZ - 22", "HR - 33", "HR - 33", "AIP - 27", "TZK - sd", "TZK - sd"],
                     ["MA - 34", "BI - 26", "OE - 26", "PO - 41", "PO - 41", ["", "TDv - 4"], ["", "TDv - 4"], ""],
                     ["VJ - 25", "OE - 27", "FIZ - 26", "KE - 22", "MA - 36", "SR - 40", ["", "FIZv - 22"], "HRd - 21"],
                     [["TDv - 4", ""], ["TDv - 4", ""], "OE - 26", "GE - 47", "GE - 47", "EN - 40", "EN - 40", "ET - 21"],
