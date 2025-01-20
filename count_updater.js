@@ -33,16 +33,16 @@ const startNum = Date.now()
 // Nvm, gotta work!
 
 const eveningSchedule = [["", "", "FIZ - 22", "HR - 33", "HR - 33", "AIP - 27", "TZK - sd", "TZK - sd"],
-                    ["", "BI - 26", "OE - 26", "PO - 41", "PO - 41", "OE - 26", ["", "FIZv - 22"], ""],
-                    ["", "", "FIZ - 26", "KE - 22", "MA - 36", "SR - 40", "MA - 34", "HRd - 21"],
-                    ["", "AIP - 27", "OE - 26", "GE - 47", "GE - 47", "EN - 40", "EN - 40", "ET/VJ - 21/25"],
-                    ["MA - 37", "MA - 37", "HR - 33", "KE - 22", ["UITUP - 31", "AIPv - 4"], ["UITUP - 31", "AIPv - 4"], ["AIPv - 4", "UITUP - 31"], ["AIPv - 4", "UITUP - 31"]]]
-const eveningTimeSchedule = ["7:45-8:30", "8:35-9:20", "9:25-10:10", "10:15-11:00", "11:20-12:05", "12:10-12:55", "13:00-13:45", "13:50-14:35"]
-
-const morningSchedule = [["OEv - 28", "TDv - 4"], ["OEv - 28", "TDv - 4"], ["TDv - 4", "OEv - 28"], ["TDv - 4", "OEv - 28"], "HR - 33", "HR - 33", "TZK - sd", "TZK - sd"],
                     ["MA - 34", "BI - 26", "OE - 26", "PO - 41", "PO - 41", ["", "TDv - 4"], ["", "TDv - 4"], ""],
                     ["VJ - 25", "OE - 27", "FIZ - 26", "KE - 22", "MA - 36", "SR - 40", ["FIZv - 22", ""], "HRd - 21"],
                     [["TDv - 4", ""], ["TDv - 4", ""], "OE - 26", "GE - 47", "GE - 47", "EN - 40", "EN - 40", "ET - 21"],
+                    ["MA - 37", "MA - 37", "HR - 33", "KE - 22", ["UITUP - 31", "AIPv - 4"], ["UITUP - 31", "AIPv - 4"], ["AIPv - 4", "UITUP - 31"], ["AIPv - 4", "UITUP - 31"]]]
+const eveningTimeSchedule = ["7:45-8:30", "8:35-9:20", "9:25-10:10", "10:15-11:00", "11:20-12:05", "12:10-12:55", "13:00-13:45", "13:50-14:35"]
+
+const morningSchedule = [[["OEv - 28", "TDv - 4"], ["OEv - 28", "TDv - 4"], ["TDv - 4", "OEv - 28"], ["TDv - 4", "OEv - 28"], "HR - 33", "HR - 33", "TZK - sd", "TZK - sd"],
+                    ["", "BI - 26", "OE - 26", "PO - 41", "PO - 41", "OE - 26", ["", "FIZv - 22"], ""],
+                    ["", "", "FIZ - 26", "KE - 22", "MA - 36", "SR - 40", "MA - 34", "HRd - 21"],
+                    ["", "AIP - 27", "OE - 26", "GE - 47", "GE - 47", "EN - 40", "EN - 40", "ET/VJ - 21/25"],
                     ["MA - 37", "MA - 37", "HR - 33", "KE - 22", ["UITUP - 31", "AIPv - 4"], ["UITUP - 31", "AIPv - 4"], ["AIPv - 4", "UITUP - 31"], ["AIPv - 4", "UITUP - 31"]]]
 const morningTimeSchedule = ["7:45-8:30", "8:35-9:20", "9:25-10:10", "10:15-11:00", "11:20-12:05", "12:10-12:55", "13:00-13:45", "13:50-14:35"]
 
