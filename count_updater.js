@@ -32,6 +32,16 @@ const startNum = Date.now()
 // or did i commit just this text?...
 // Nvm, gotta work!
 
+// Here we go again
+// Just a small fix, im not going to make big app or change today, dont worry
+// So, its 02.04.2025 today, yeah?
+// I think i need to make a game or Ticker with backend after Ticker V0.3 or Ticker V0.4
+// Btw, i had quite a good time playing minesweeper!
+// ...for the entire week...
+// If you are interested, here is my account: https://minesweeper.online/player/31122657
+// So, we will meet very soon!
+// Bye!
+
 const eveningSchedule = [["", "", "FIZ - 22", "HR - 33", "HR - 33", "AIP - 27", "TZK - sd", "TZK - sd"],
                     ["MA - 34", "BI - 26", "OE - 26", "PO - 41", "PO - 41", ["", "TDv - 4"], ["", "TDv - 4"], ""],
                     ["VJ - 25", "OE - 27", "FIZ - 26", "KE - 22", "MA - 36", "SR - 40", ["", "FIZv - 22"], "HRd - 21"],
@@ -41,8 +51,8 @@ const eveningTimeSchedule = ["7:45-8:30", "8:35-9:20", "9:25-10:10", "10:15-11:0
 
 const morningSchedule = [[["OEv - 28", "TDv - 4"], ["OEv - 28", "TDv - 4"], ["TDv - 4", "OEv - 28"], ["TDv - 4", "OEv - 28"], "HR - 33", "HR - 33", "TZK - sd", "TZK - sd"],
                     ["", "BI - 26", "OE - 26", "PO - 41", "PO - 41", "OE - 26", ["FIZv - 22", ""], ""],
-                    ["", "", "FIZ - 26", "KE - 22", "MA - 36", "SR - 40", "MA - 34", "HRd - 21"],
-                    ["", "AIP - 27", "OE - 26", "GE - 47", "GE - 47", "EN - 40", "EN - 40", "ET/VJ - 21/25"],
+                    ["", "", "FIZ - 29", "KE - 26", "MA - 37", "SR - 40", "MA - 27", "HRd - 21"],
+                    ["", "AIP - 27", "OE - 26", "GE - 47", "GE - 47", "EN - 40", "EN - 40", "VJ/ET - 21/25"],
                     ["MA - 37", "MA - 37", "HR - 33", "KE - 22", ["UITUP - 31", "AIPv - 4"], ["UITUP - 31", "AIPv - 4"], ["AIPv - 4", "UITUP - 31"], ["AIPv - 4", "UITUP - 31"]]]
 const morningTimeSchedule = ["7:45-8:30", "8:35-9:20", "9:25-10:10", "10:15-11:00", "11:20-12:05", "12:10-12:55", "13:00-13:45", "13:50-14:35"]
 
